@@ -462,47 +462,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1] - 2026-03-30
 
 ### Component Versions
-
 | Component | Version |
 |-----------|--------|
 | copilot-shell | 2.0.1 |
-| agent-sec-core | 0.1 |
-| agentsight | 0.1 |
-| os-skills | 0.1 |
-
+| agent-sec-core | 0.1.0 |
+| agentsight | 0.1.0 |
+| os-skills | 0.1.0 |
 ### New Components
-
-- **copilot-shell**: First release v2.0.1, built AI-powered terminal assistant with Tab completion, /bash mode, sudo support, and hook security, users get an AI-native CLI experience on first login
-- **agent-sec-core**: First release v0.1, delivered Skill signature verification, security sandbox, and system hardening, Agent operations run in a controlled least-privilege environment
-- **agentsight**: First release v0.1, built eBPF-based zero-intrusion observability probe, users can monitor LLM API calls and Token consumption without modifying Agent code
-- **os-skills**: First release v0.1, curated system administration, SysOM, DevOps, and cloud skills, Agent can autonomously perform common OS operations
-
+- **copilot-shell**: First release v2.0.1, built AI-powered terminal assistant with Tab completion, /bash mode, sudo support, and hook security. Users get an AI-native CLI experience on first login.
+- **agent-sec-core**: First release v0.1.0, delivered Skill signature verification, security sandbox, and system hardening. Agent operations run in a controlled least-privilege environment.
+- **agentsight**: First release v0.1.0, built eBPF-based zero-intrusion observability probe. Users can monitor LLM API calls and Token consumption without modifying Agent code.
+- **os-skills**: First release v0.1.0, curated system administration, SysOM, DevOps, and cloud skills. Agent can autonomously perform common OS operations.
 ### Security
-
 - Skill full-link encryption with digital signatures
 - Hardware-level security sandbox for risk isolation
 - Identity authentication and integrity verification for Skill calls
-
 ---
-
 For detailed changelogs of individual components, see:
-
 **User Entrypoint**
 - [copilot-shell](deprecated/copilot-shell/CHANGELOG.md)
 - [cosh-ng](src/cosh-ng/CHANGELOG.md)
 - [anolisa](distribution/anolisa/CHANGELOG.md)
 - [os-skills](src/os-skills/CHANGELOG.md)
-
 **Token Saving**
 - [tokenless](src/tokenless/CHANGELOG.md)
-
 **Runtime**
 - [agent-memory](src/agent-memory/CHANGELOG.md)
 - [skillfs](src/skillfs/CHANGELOG.md)
 - [ws-ckpt](src/ws-ckpt/CHANGELOG.md)
-
 **Agent Observability**
 - [agentsight](src/agentsight/CHANGELOG.md)
-
 **Agent Security**
 - [agent-sec-core](src/agent-sec-core/CHANGELOG.md)
+
