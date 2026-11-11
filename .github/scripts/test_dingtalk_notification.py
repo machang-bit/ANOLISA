@@ -81,7 +81,8 @@ class DingTalkNotificationTest(unittest.TestCase):
     def test_signed_transport_checks_the_response_and_has_a_network_deadline(self) -> None:
         response = MagicMock()
         response.__enter__.return_value.read.return_value = b'{"errcode":0}'
-        with patch.object(MODULE.urllib.request, "urlopen", return_value=response) as send:
+        # 修改了这里：改用 MODULE._OPENER 的 open 方法
+        with patch.object(MODULE._OPENER, "open", return_value=response) as send:
             MODULE.send_markdown(
                 webhook="https://example.invalid/robot?access_token=private",
                 secret="signing-key",
@@ -99,18 +100,19 @@ class DingTalkNotificationTest(unittest.TestCase):
     def test_transport_distinguishes_rejection_from_an_unknown_outcome(self) -> None:
         response = MagicMock()
         response.__enter__.return_value.read.return_value = b'{"errcode":310000}'
-        with patch.object(MODULE.urllib.request, "urlopen", return_value=response):
+        # 修改了这里：改用 MODULE._OPENER 的 open 方法
+        with patch.object(MODULE._OPENER, "open", return_value=response):
             with self.assertRaises(MODULE.DeliveryRejected):
                 MODULE.send_markdown(
                     webhook="https://example.invalid", secret="", title="Issue", text="Result"
                 )
-        with patch.object(MODULE.urllib.request, "urlopen", side_effect=TimeoutError):
+        with patch.object(MODULE._OPENER, "open", side_effect=TimeoutError):
             with self.assertRaisesRegex(RuntimeError, "unknown"):
                 MODULE.send_markdown(
                     webhook="https://example.invalid", secret="", title="Issue", text="Result"
                 )
         failure = urllib.error.HTTPError("https://example.invalid", 503, "unavailable", {}, None)
-        with patch.object(MODULE.urllib.request, "urlopen", side_effect=failure):
+        with patch.object(MODULE._OPENER, "open", side_effect=failure):
             with self.assertRaisesRegex(RuntimeError, "unknown"):
                 MODULE.send_markdown(
                     webhook="https://example.invalid", secret="", title="Issue", text="Result"
